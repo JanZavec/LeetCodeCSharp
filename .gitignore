@@ -4,3 +4,5 @@
 
 /.vs
 /LeetCodeTasks/.vs/LeetCodeTasks
+/LeetCodeTasks/LeetCodeDailyConsoleApp/bin/Debug
+/LeetCodeTasks/LeetCodeDailyConsoleApp/obj/Debug
