@@ -24,6 +24,8 @@ namespace LeetCodeDailyConsoleApp
             return true;
         }
 
+   
+
         static void Main(string[] args)
         {
             int[] arr = { 1, 2, 5 };
