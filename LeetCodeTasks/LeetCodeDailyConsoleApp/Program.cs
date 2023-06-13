@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,10 +59,32 @@ namespace LeetCodeDailyConsoleApp
             return result;
         }
 
+        public static int EqualPairs(int[][] grid)
+        {
+            int pairs = 0;
+            for (int i = 0; i < grid.Length; ++i) 
+            {
+                int[] row = grid[i];
+                
+                for(int j = 0; j < grid.Length; ++j)
+                {
+                    var selectedArray = grid
+            .Where(o => (o != null && o.Count() > j))
+            .Select(o => o[j])
+            .ToArray();
+                    if (Enumerable.SequenceEqual(row, selectedArray)) pairs++;
+                }
+            }
+
+            return pairs;
+
+        }
+
         static void Main(string[] args)
         {
-            int[] arr = {0,1,2,4,5,7};
-            Console.WriteLine(SummaryRanges(arr));
+            
+            int[][] arr = { new[] { 3, 2, 1 }, new[] { 1, 7, 6 }, new[] { 2, 7, 7 } };
+            Console.WriteLine(EqualPairs(arr));
             Console.ReadLine();
         }
     }
