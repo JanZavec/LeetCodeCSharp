@@ -4,10 +4,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LeetCodeDailyConsoleApp
 {
-    internal class Program
+    public class TreeNode
+    {
+     public int val;
+     public TreeNode left;
+     public TreeNode right;
+      public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+        {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+         }
+    }
+
+public class Solution
+    {
+        List<int> listOfValues = new List<int>();
+        private void PreOrder_Rec(TreeNode root)
+
+        {
+            if (root != null)
+
+            {
+                listOfValues.Add(root.val);
+                PreOrder_Rec(root.left);
+                PreOrder_Rec(root.right);
+
+            }
+
+        }
+
+        public int GetMinimumDifference(TreeNode root)
+        {
+            PreOrder_Rec(root);
+            listOfValues.Sort();
+            List<int> minDiff = new List<int>();
+            int min = Int32.MaxValue;
+            for (int i = 0; i < listOfValues.Count - 1; i++) 
+            {
+                minDiff.Add(Math.Abs(listOfValues.ElementAt(i) - listOfValues.ElementAt(i + 1)));
+            }
+            return minDiff.Min();
+        }
+
+        internal class Program
     {
         public static bool CanMakeArithmeticProgression(int[] arr)
         {
