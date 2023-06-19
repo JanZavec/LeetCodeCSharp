@@ -54,12 +54,26 @@ namespace LeetCodeDailyConsoleApp
         public static int MaxLevelSum(TreeNode root)
         {
             levelTraversal(root, 0);
-            List<int> sums = new List<int>(valuesatLevels.Count);
+            List<int> sums = new List<int>(valuesatLevels.Count); 
             valuesatLevels.ForEach(list => sums.Add(list.Sum()));
 
             return sums.IndexOf(findMax(sums)) + 1;
 
         }
+        public int LargestAltitude(int[] gain)
+        {
+            int[] lat = new int[gain.Length + 1];
+            lat[0] = 0;
+            if (gain.Length == 1) return 0;
+            if (gain.Length == 2) return gain[1];
+            lat[1] = gain[0];
+            for(int index = 1; index <  gain.Length; index++) 
+            {
+                lat[index] = lat[index - 1] + gain[index];
+            }
+            return lat.Max();
+        }
+
 
 
 
