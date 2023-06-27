@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace LeetCodeDailyConsoleApp
 {
@@ -39,12 +33,12 @@ namespace LeetCodeDailyConsoleApp
             levelTraversal(root.left, level + 1);
             levelTraversal(root.right, level + 1);
         }
- 
-            private static int findMax(List<int> sums) 
-        { 
+
+        private static int findMax(List<int> sums)
+        {
             int max = sums[0];
 
-            foreach (int value in sums) 
+            foreach (int value in sums)
             {
                 if (value > max)
                     max = value;
@@ -54,7 +48,7 @@ namespace LeetCodeDailyConsoleApp
         public static int MaxLevelSum(TreeNode root)
         {
             levelTraversal(root, 0);
-            List<int> sums = new List<int>(valuesatLevels.Count); 
+            List<int> sums = new List<int>(valuesatLevels.Count);
             valuesatLevels.ForEach(list => sums.Add(list.Sum()));
 
             return sums.IndexOf(findMax(sums)) + 1;
@@ -64,13 +58,15 @@ namespace LeetCodeDailyConsoleApp
         {
             int[] lat = new int[gain.Length + 1];
             lat[0] = 0;
-            if (gain.Length == 1) return 0;
-            if (gain.Length == 2) return gain[1];
+            if (gain.Length == 1 && gain[0] > 0) return gain[0];
+            if (gain.Length == 1 && gain[0] <= 0) return 0;
+            if (gain.Length == 2) return gain[1] + gain[0];
             lat[1] = gain[0];
-            for(int index = 1; index <  gain.Length; index++) 
+            for (int index = 2; index < gain.Length; index++)
             {
-                lat[index] = lat[index - 1] + gain[index];
+                lat[index] = lat[index - 1] + gain[index - 1];
             }
+            lat[gain.Length] = lat[gain.Length - 1] + gain[gain.Length - 1];
             return lat.Max();
         }
 
@@ -175,6 +171,11 @@ namespace LeetCodeDailyConsoleApp
                 }
 
                 return pairs;
+
+            }
+
+            public IList<IList<int>> KSmallestPairs(int[] nums1, int[] nums2, int k)
+            {
 
             }
 
