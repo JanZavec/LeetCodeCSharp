@@ -174,9 +174,11 @@ namespace LeetCodeDailyConsoleApp
 
             }
 
-            public IList<IList<int>> KSmallestPairs(int[] nums1, int[] nums2, int k)
+            public int SingleNumber(int[] nums)
             {
-
+                // Group numbers, by their count which is 1 and check Single because there must be only 1 such number and get that key.
+                var uniqueValues = nums.GroupBy(x => x).Where(g => g.Count() == 1);
+                return uniqueValues.Single().Key;
             }
 
             static void Main(string[] args)
